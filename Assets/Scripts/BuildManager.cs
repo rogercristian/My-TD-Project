@@ -4,8 +4,8 @@ using UnityEngine;
 public class BuildManager : MonoBehaviour
 {
     public static BuildManager instance;
-    public GameObject standardTurretPrefab;
-    public GameObject misselTurretPrefab;
+    //public GameObject standardTurretPrefab;
+    //public GameObject misselTurretPrefab;
     public GameObject buildEVfx;
 
     private TurretBlueprint turretToBuild;

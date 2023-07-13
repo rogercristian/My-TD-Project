@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-     private Transform target;
+     private Transform target;    
+    private float fireCoutdown = 0f;   
 
-    [Header("Atributos")]
-    [SerializeField] float fireRate = 1f;
-    private float fireCoutdown = 0f;
-    [SerializeField] private float range = 15f;
-
-    [Header("Campos configuraveis")]
+    [Header("Campos de funcionalidades obrigatorias")]
     [SerializeField] string enemyTag;
     [SerializeField] Transform baseToRotate;
     [SerializeField] private float speedRotation = 10;
-    [SerializeField] private GameObject bulletTurret;
     [SerializeField] private Transform shootPoint;
+
+    [Header("Config padrão das balas")]
+    [SerializeField] private GameObject bulletTurret;
+    [SerializeField] float fireRate = 1f;
+    [SerializeField] private float range = 15f;
+
+    [Header("Config Laser Weapon")]
+    [SerializeField] bool useLaser;
+    [SerializeField] LineRenderer lineRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,26 +55,55 @@ public class Turret : MonoBehaviour
     {
         if (target == null)
         {
+            if (useLaser)
+            {
+                if(lineRenderer.enabled)
+                {
+                    lineRenderer.enabled = false;
+                }
+            }
             return;
         }
+        // look on target
+        LookOnTarget();
 
-        //target look 
-        Vector3 dir= target.position - transform.position;
+        // fire
+        
+        if(useLaser)
+        {
+            Laser();
+        }
+        else
+        {
+            if (fireCoutdown <= 0f)
+            {
+                Shoot();
+                fireCoutdown = 1f / fireRate;
+            }
+
+            fireCoutdown -= Time.deltaTime;
+        }
+       
+    }
+
+    void Laser()
+    {
+        if (!lineRenderer.enabled)
+        {
+            lineRenderer.enabled = true;
+        }
+
+        lineRenderer.SetPosition(0, shootPoint.position);
+        lineRenderer.SetPosition(1, target.position);
+    }
+    void LookOnTarget()
+    {
+         
+        Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(baseToRotate.rotation, lookRotation, Time.deltaTime * speedRotation).eulerAngles;
         baseToRotate.rotation = Quaternion.Euler(0f, rotation.y, rotation.z);
-
-        // fire
-
-       if (fireCoutdown <= 0f)
-        {
-            Shoot();
-            fireCoutdown = 1f / fireRate;
-        }
-
-       fireCoutdown -= Time.deltaTime;
     }
-
     void Shoot()
     {
         GameObject bulletGO =   Instantiate(bulletTurret, shootPoint.transform.position, shootPoint.transform.rotation);   

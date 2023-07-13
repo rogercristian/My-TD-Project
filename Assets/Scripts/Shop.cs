@@ -4,6 +4,7 @@ public class Shop : MonoBehaviour
 {
     public TurretBlueprint standardTurret;
     public TurretBlueprint misselTurret;
+    public TurretBlueprint laserWeapon;
 
     BuildManager _buildManager;
 
@@ -20,5 +21,11 @@ public class Shop : MonoBehaviour
     {
         Debug.Log("Comprou missel");
         _buildManager.SelectTurretToBuild(misselTurret);
+    }
+
+    public void SelectLaserWeapon()
+    {
+        Debug.Log("Comprou missel");
+        _buildManager.SelectTurretToBuild(laserWeapon);
     }
 }

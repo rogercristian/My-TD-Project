@@ -119,4 +119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 70
+  explosionRage: 0
   vfxHit: {fileID: 3519501706520932903, guid: 71ebdedfdc496184fa045b76e2035a5e, type: 3}
+  damage: 50

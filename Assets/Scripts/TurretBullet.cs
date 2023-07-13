@@ -9,6 +9,8 @@ public class TurretBullet : MonoBehaviour
     [SerializeField] float speed = 70f;
     [SerializeField] float explosionRage = 0f;
     [SerializeField] GameObject vfxHit;
+    [SerializeField] int damage=10;
+   
     public void Seek(Transform _target) { target = _target; }
     // Update is called once per frame
     void Update()
@@ -63,7 +65,12 @@ public class TurretBullet : MonoBehaviour
     }
     void Damage(Transform enemy)
     {
-         Destroy(enemy.gameObject);
+        Enemy e = enemy.GetComponent<Enemy>();
+        if(e != null)
+        {
+            e.TakeDamage(damage);
+
+        }       
     }
     private void OnDrawGizmosSelected()
     {

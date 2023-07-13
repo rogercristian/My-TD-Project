@@ -121,3 +121,4 @@ MonoBehaviour:
   speed: 70
   explosionRage: 30
   vfxHit: {fileID: 3519501706520932903, guid: 71ebdedfdc496184fa045b76e2035a5e, type: 3}
+  damage: 50

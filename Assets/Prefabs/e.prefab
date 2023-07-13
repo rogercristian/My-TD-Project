@@ -78,6 +78,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagTarget: End
+  health: 100
+  cashGain: 100
 --- !u!114 &5651825917713393886
 MonoBehaviour:
   m_ObjectHideFlags: 0
