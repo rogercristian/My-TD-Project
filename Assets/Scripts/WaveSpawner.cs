@@ -20,6 +20,8 @@ public class WaveSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.GameEnded) return;
+
         if(countdown <= 0f)
         {
             StartCoroutine(SpawnWaves());
@@ -33,6 +35,7 @@ public class WaveSpawner : MonoBehaviour
     IEnumerator  SpawnWaves()
     {
         waveIndex++;
+        PlayerStats.Rounds++;
         Debug.Log("UMA NOVA ONDA TA CHEGANDO, MANO");
         for (int i = 0; i < waveIndex; i++)
         {

@@ -5,8 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
    public static GameManager Instance;
-   private bool gameEnded = false;
+   public static bool GameEnded;
 
+    public GameObject gameoverUi;
     private void Awake()
     {
         if (Instance == null)
@@ -16,10 +17,15 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
     }
+    private void Start()
+    {
+        GameEnded = false;
+        gameoverUi.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {
-       if (gameEnded) return;
+       if (GameEnded) return;
 
        if(PlayerStats.Lives <= 0)
         {
@@ -29,7 +35,8 @@ public class GameManager : MonoBehaviour
 
     void EndGame()
     {
-        gameEnded = true;
+        GameEnded = true;
+        gameoverUi.SetActive(true);
         Debug.Log("Game over");
     }
 }

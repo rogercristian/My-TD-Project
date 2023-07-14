@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3751660352039714630}
   - component: {fileID: 1322757536419638766}
-  - component: {fileID: -4714887790848136497}
   - component: {fileID: 5651825917713393886}
+  - component: {fileID: -4714887790848136497}
   - component: {fileID: 2907908519802137983}
   - component: {fileID: 476162614923696452}
   m_Layer: 0
@@ -65,21 +65,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &-4714887790848136497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6268907056068930813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 009cbf1f92ffdba409dee512a63d0d89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagTarget: End
-  health: 100
-  cashGain: 100
 --- !u!114 &5651825917713393886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +107,22 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!114 &-4714887790848136497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6268907056068930813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 009cbf1f92ffdba409dee512a63d0d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagTarget: End
+  startSpeed: 5
+  health: 100
+  cashGain: 100
 --- !u!114 &2907908519802137983
 MonoBehaviour:
   m_ObjectHideFlags: 0

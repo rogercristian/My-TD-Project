@@ -6,6 +6,7 @@ public class Turret : MonoBehaviour
 {
      private Transform target;    
     private float fireCoutdown = 0f;   
+    private Enemy targetEnemy;
 
     [Header("Campos de funcionalidades obrigatorias")]
     [SerializeField] string enemyTag;
@@ -20,7 +21,10 @@ public class Turret : MonoBehaviour
 
     [Header("Config Laser Weapon")]
     [SerializeField] bool useLaser;
+    [SerializeField] int damageOverTime = 30;
     [SerializeField] LineRenderer lineRenderer;
+    [SerializeField] ParticleSystem laserHitFx;
+    private float slowAmount = .5f;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +52,11 @@ public class Turret : MonoBehaviour
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
+            targetEnemy = nearestEnemy.GetComponent<Enemy>();
+        }
+        else
+        {
+            target = null;
         }
     }
     // Update is called once per frame
@@ -60,6 +69,7 @@ public class Turret : MonoBehaviour
                 if(lineRenderer.enabled)
                 {
                     lineRenderer.enabled = false;
+                    laserHitFx.Stop();
                 }
             }
             return;
@@ -88,13 +98,20 @@ public class Turret : MonoBehaviour
 
     void Laser()
     {
+        targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
+        targetEnemy.Slow(slowAmount);
         if (!lineRenderer.enabled)
         {
             lineRenderer.enabled = true;
+            laserHitFx.Play();
         }
 
         lineRenderer.SetPosition(0, shootPoint.position);
         lineRenderer.SetPosition(1, target.position);
+        Vector3 dir = shootPoint.position - target.position;
+        laserHitFx.transform.position = target.position  + dir.normalized;
+
+        laserHitFx.transform.rotation = Quaternion.LookRotation(dir);
     }
     void LookOnTarget()
     {

@@ -18,6 +18,8 @@ public class CamControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.GameEnded) { this.enabled = false; return; }
+
         Vector2 position = InputManager.GetInstance().GetMoveDirection();
         Vector3 move = new Vector3(position.x * speedMove, 0f, position.y * speedMove);
 
