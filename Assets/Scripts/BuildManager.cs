@@ -10,7 +10,9 @@ public class BuildManager : MonoBehaviour
 
     private TurretBlueprint turretToBuild;
 
+    private Node selectedNode;
 
+    public NodeUi nodeUi;
     private void Awake()
     {
         if(instance != null) {
@@ -20,32 +22,40 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
 
-    //private void Start()
+    //pr
+    //ivate void Start()
     //{
     //    turretToBuild = standardTurretPrefab;
     //}
     public bool CanBuild { get { return turretToBuild != null; } }
     public bool HasCash { get { return PlayerStats.Cash >= turretToBuild.cost; } }
 
-    public void BuildTurretOn(Node node)
+   
+
+    public void SelectNode(Node node)
     {
-        if(PlayerStats.Cash < turretToBuild.cost)
+        if(selectedNode == node)
         {
-            Debug.Log("Ta sem grana mano");
+            DeselectNode();
             return;
         }
+        selectedNode = node;
+        turretToBuild = null;
 
-        PlayerStats.Cash -= turretToBuild.cost;
+        nodeUi.SetTarget(node);
+    }
 
-        GameObject turret =  Instantiate(turretToBuild.prefab,node.transform.position, Quaternion.identity);
-        node.turret = turret;
-
-        GameObject _buildVfx = Instantiate(buildEVfx,node.transform.position, Quaternion.identity);
-       // Destroy(_buildVfx);
-        Debug.Log("Torre feita, cash restante: " + PlayerStats.Cash);
+    public void DeselectNode()
+    {
+        selectedNode = null;
+        nodeUi.Hide();
     }
    public void SelectTurretToBuild(TurretBlueprint turret)
     {
         turretToBuild = turret;
+
+        DeselectNode();
     }
+
+    public TurretBlueprint GetTurretToBuild() { return turretToBuild; }
 }
