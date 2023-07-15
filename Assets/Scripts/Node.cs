@@ -82,6 +82,14 @@ public class Node : MonoBehaviour
         isUpgraded = true;
         Debug.Log("Torre evoluida " + PlayerStats.Cash);
     }
+
+    public void SellTurret()
+    {
+        PlayerStats.Cash += turretBlueprint.GetSellAmount();
+        // vfx apos a venda
+        Destroy(turret);
+        turretBlueprint = null;
+    }
     private void OnMouseEnter()
     {
         if (EventSystem.current.IsPointerOverGameObject()) return;

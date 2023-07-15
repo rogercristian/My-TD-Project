@@ -6,6 +6,7 @@ public class NodeUi : MonoBehaviour
     [SerializeField] private GameObject canvas;
     [SerializeField] private TMP_Text upgradeCosttext;
     [SerializeField] public Button upgradeButton;
+    [SerializeField] private TMP_Text sellAmountText;
     private Node target;
 
 
@@ -25,6 +26,7 @@ public class NodeUi : MonoBehaviour
             upgradeCosttext.text = "Done";
         }
 
+        sellAmountText.text = "$" + target.turretBlueprint.GetSellAmount();
         canvas.SetActive(true);
     }
 
@@ -36,6 +38,12 @@ public class NodeUi : MonoBehaviour
     public void Upgrade()
     {
         target.UpgradeTurret();
+        BuildManager.instance.DeselectNode();
+    }
+
+    public void Sell() {
+        
+        target.SellTurret();
         BuildManager.instance.DeselectNode();
     }
 }
