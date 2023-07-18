@@ -49,6 +49,7 @@ public class Enemy : MonoBehaviour
     public void Die() 
     {
         PlayerStats.Cash += cashGain;
+        WaveSpawner.EnemiesAlive--;
         Destroy(gameObject);
     }
     private void OnTriggerEnter(Collider other)
@@ -62,7 +63,7 @@ public class Enemy : MonoBehaviour
     public void ApplyDamage()
     {
         PlayerStats.Lives--;
-        
+        WaveSpawner.EnemiesAlive--;
         Destroy(gameObject);
     }
 }

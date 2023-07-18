@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseUi;
-  
+    public SceneTransition sceneTransition;
+    public string menuName;
     void Update()
     {
         bool startButton = InputManager.GetInstance().GetStartPressed();
@@ -33,16 +34,13 @@ public class PauseMenu : MonoBehaviour
     public void RetryLevel()
     {
         PauseToggle();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        sceneTransition.FadeTo(SceneManager.GetActiveScene().name);
     }
 
     public void MainMenu()
     {
-        Debug.Log("fazer main menu");
+        PauseToggle();
+        sceneTransition.FadeTo(menuName);
     }
 
-    public void QuitOption()
-    {
-        Debug.Log("Fazer quit options");
-    }
 }
