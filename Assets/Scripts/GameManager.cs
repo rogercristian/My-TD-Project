@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
    public static GameManager Instance;
    public static bool GameEnded;
-
-    public GameObject gameoverUi;
+   public GameObject gameoverUi;
+  
     private void Awake()
     {
         if (Instance == null)
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (GameEnded) return;
+       if (GameEnded) return;       
 
        if(PlayerStats.Lives <= 0)
         {

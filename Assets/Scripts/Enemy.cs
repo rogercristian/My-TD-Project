@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,14 +12,18 @@ public class Enemy : MonoBehaviour
     AIPath aipath;
     [SerializeField] string tagTarget;
     [SerializeField] float startSpeed = 5f;
-    [SerializeField] float health = 100;
+    float health;
+    [SerializeField] float startHealth = 100f;
     [SerializeField] int cashGain = 100;
+    [SerializeField] Image healthBar;
+    
     void Start()
     {
         destination = GetComponent<AIDestinationSetter>();
         destination.target = GameObject.FindGameObjectWithTag(tagTarget).transform;
         aipath = GetComponent<AIPath>();
-        aipath.maxSpeed = startSpeed;
+        aipath.maxSpeed = startSpeed;        
+        health = startHealth;
     }
 
     private void Update()
@@ -28,6 +33,9 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
+
+        healthBar.GetComponent<Image>().fillAmount = health / startHealth;
+
         if (health <= 0) 
         {
             Die();
@@ -54,6 +62,7 @@ public class Enemy : MonoBehaviour
     public void ApplyDamage()
     {
         PlayerStats.Lives--;
+        
         Destroy(gameObject);
     }
 }

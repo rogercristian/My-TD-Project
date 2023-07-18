@@ -10,6 +10,8 @@ public class InputManager : MonoBehaviour
     private Vector2 rotateDirection = Vector2.zero;
     private bool interactPressed = false;
     private bool submitPressed = false;
+    private bool startPressed = false;
+    private bool selectPressed = false;
     float scroll;
     private static InputManager instance;
 
@@ -87,6 +89,29 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void StartButtonPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            startPressed = true;
+        }
+        else if (context.canceled)
+        {
+            startPressed = false;
+        }
+    }
+
+    public void SelectButtonPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            selectPressed = true;
+        }
+        else if (context.canceled)
+        {
+            selectPressed = false;
+        }
+    }
     // 
     public Vector2 GetMoveDirection() { return moveDirection; }
     public float GetScrollAction() { return scroll; }
@@ -105,6 +130,18 @@ public class InputManager : MonoBehaviour
         return result;
     }
 
+    public bool GetStartPressed()
+    {
+        bool result = startPressed;
+        startPressed = false;
+        return result;
+    }
+    public bool GetSelectPressed()
+    {
+        bool result = selectPressed;
+        selectPressed = false;
+        return result;
+    }
     public void RegisterSubmitPressed()
     {
         submitPressed = false;
