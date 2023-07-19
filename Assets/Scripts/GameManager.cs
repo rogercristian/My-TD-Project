@@ -8,11 +8,8 @@ public class GameManager : MonoBehaviour
    public static GameManager Instance;
    public static bool GameEnded;
    public GameObject gameoverUi;
-
-    public string levelName = "Level 2";
-    public int levelToUnlock = 2;
-
-    public SceneTransition sceneTransition;
+    
+    public GameObject winLevel;
   
     private void Awake()
     {
@@ -49,8 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void WinLevel()
     {
-        Debug.Log("Win!");
-        PlayerPrefs.SetInt("levelTaked", levelToUnlock);
-        sceneTransition.FadeTo(levelName);
+        GameEnded = true;
+        winLevel.SetActive(true);
     }
 }

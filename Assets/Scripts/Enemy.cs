@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float startHealth = 100f;
     [SerializeField] int cashGain = 100;
     [SerializeField] Image healthBar;
-    
+    bool isDead = false;
     void Start()
     {
         destination = GetComponent<AIDestinationSetter>();
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
 
         healthBar.GetComponent<Image>().fillAmount = health / startHealth;
 
-        if (health <= 0) 
+        if (health <= 0 && !isDead) 
         {
             Die();
         }
@@ -62,6 +62,7 @@ public class Enemy : MonoBehaviour
     }
     public void ApplyDamage()
     {
+        isDead = true;
         PlayerStats.Lives--;
         WaveSpawner.EnemiesAlive--;
         Destroy(gameObject);

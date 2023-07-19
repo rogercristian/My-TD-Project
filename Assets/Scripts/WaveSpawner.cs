@@ -24,11 +24,17 @@ public class WaveSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.GameEnded) return;
+       // if(GameManager.GameEnded) return;
 
         if (EnemiesAlive > 0) return;
 
-        if(countdown <= 0f)
+        if (waveIndex == waves.Length)
+        {
+            gameManager.WinLevel();
+            this.enabled = false;
+        }
+
+        if (countdown <= 0f)
         {
             StartCoroutine(SpawnWaves());
             countdown = timeBetweenWaves;
@@ -53,11 +59,7 @@ public class WaveSpawner : MonoBehaviour
         }
         waveIndex++;
 
-        if(waveIndex == waves.Length)
-        {
-            gameManager.WinLevel();
-            this.enabled = false;
-        }
+       
 
     }
 
