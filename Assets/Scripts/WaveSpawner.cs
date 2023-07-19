@@ -12,6 +12,8 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private float timeBetweenWaves = 5f;
     [SerializeField] private float countdown = 2f;
 
+    public GameManager gameManager;
+
     private int waveIndex = 0;
     // Start is called before the first frame update
     void Start()
@@ -42,7 +44,7 @@ public class WaveSpawner : MonoBehaviour
         PlayerStats.Rounds++;
         Wave wave = waves[waveIndex];
 
-        Debug.Log("UMA NOVA ONDA TA CHEGANDO, MANO");
+        EnemiesAlive = wave.count;
 
         for (int i = 0; i < wave.count; i++)
         {
@@ -53,7 +55,7 @@ public class WaveSpawner : MonoBehaviour
 
         if(waveIndex == waves.Length)
         {
-            Debug.Log("Win!");
+            gameManager.WinLevel();
             this.enabled = false;
         }
 
@@ -61,7 +63,6 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(GameObject enemy)
     {
-        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
-        EnemiesAlive++;
+        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);        
     }
 }

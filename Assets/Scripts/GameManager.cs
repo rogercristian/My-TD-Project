@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
    public static GameManager Instance;
    public static bool GameEnded;
    public GameObject gameoverUi;
+
+    public string levelName = "Level 2";
+    public int levelToUnlock = 2;
+
+    public SceneTransition sceneTransition;
   
     private void Awake()
     {
@@ -22,6 +27,7 @@ public class GameManager : MonoBehaviour
     {
         GameEnded = false;
         gameoverUi.SetActive(false);
+        
     }
     // Update is called once per frame
     void Update()
@@ -39,5 +45,12 @@ public class GameManager : MonoBehaviour
         GameEnded = true;
         gameoverUi.SetActive(true);
         Debug.Log("Game over");
+    }
+
+    public void WinLevel()
+    {
+        Debug.Log("Win!");
+        PlayerPrefs.SetInt("levelTaked", levelToUnlock);
+        sceneTransition.FadeTo(levelName);
     }
 }
