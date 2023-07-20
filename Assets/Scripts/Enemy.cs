@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float startHealth = 100f;
     [SerializeField] int cashGain = 100;
     [SerializeField] Image healthBar;
+    [SerializeField] int damageInPlayer = 10;
     bool isDead = false;
     void Start()
     {
@@ -63,7 +64,7 @@ public class Enemy : MonoBehaviour
     public void ApplyDamage()
     {
         isDead = true;
-        PlayerStats.Lives--;
+        PlayerStats.Lives -= damageInPlayer;
         WaveSpawner.EnemiesAlive--;
         Destroy(gameObject);
     }

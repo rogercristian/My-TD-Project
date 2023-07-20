@@ -24,7 +24,10 @@ public class WaveSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // if(GameManager.GameEnded) return;
+        if (GameManager.GameEnded) {
+            this.enabled = false;
+            return;
+        }
 
         if (EnemiesAlive > 0) return;
 
