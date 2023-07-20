@@ -24,7 +24,9 @@ public class GameManager : MonoBehaviour
     {
         GameEnded = false;
         gameoverUi.SetActive(false);
-        
+        winLevel.SetActive(false);
+
+
     }
     // Update is called once per frame
     void Update()
