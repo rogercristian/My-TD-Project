@@ -119,7 +119,7 @@ public class Turret : MonoBehaviour
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(baseToRotate.rotation, lookRotation, Time.deltaTime * speedRotation).eulerAngles;
-        baseToRotate.rotation = Quaternion.Euler(0f, rotation.y, rotation.z);
+        baseToRotate.rotation = Quaternion.Euler(rotation.x, rotation.y, 0f);
     }
     void Shoot()
     {

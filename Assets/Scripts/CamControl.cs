@@ -1,6 +1,8 @@
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 
 public class CamControl : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class CamControl : MonoBehaviour
     [SerializeField] float scrollSpeed = 5.0f;
     [SerializeField] float min = 2f;
     [SerializeField] float max = 10f;
+   
    
     // Start is called before the first frame update
     void Start()
@@ -35,5 +38,7 @@ public class CamControl : MonoBehaviour
         scrollPos.y = Mathf.Clamp(scrollPos.y, min, max);
 
         transform.position = scrollPos;
+
+        
     }
 }
