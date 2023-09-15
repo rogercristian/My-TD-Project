@@ -503,7 +503,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: db50dd843d4cc574aaf0a47517081d07,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3912954493629426648}
+      addedObject: {fileID: 1297183435129687114}
   m_SourcePrefab: {fileID: 100100000, guid: db50dd843d4cc574aaf0a47517081d07, type: 3}
 --- !u!1 &6011281501500939374 stripped
 GameObject:
@@ -533,7 +533,7 @@ MonoBehaviour:
     upgradePrefab: {fileID: 0}
     upgradeCost: 0
   isUpgraded: 0
---- !u!135 &3912954493629426648
+--- !u!135 &1297183435129687114
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

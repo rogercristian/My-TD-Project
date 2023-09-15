@@ -86,6 +86,7 @@ public class Node : MonoBehaviour
     public void SellTurret()
     {
         PlayerStats.Cash += turretBlueprint.GetSellAmount();
+        isUpgraded = false;
         // vfx apos a venda
         Destroy(turret);
         turretBlueprint = null;

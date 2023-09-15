@@ -3,7 +3,22 @@ guid: b03af7d2cab709443b5cfdd2e14955b6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base Tur
+    second: {fileID: 2100000, guid: f048a7c63a7989542ba52d1ea528b6ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tur Canon
+    second: {fileID: 2100000, guid: 3e1ba64c45afff44fb37886ec9f5c0e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tur Shell
+    second: {fileID: 2100000, guid: 43b9d8c79f73603498e16056b021f4d5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,12 @@ guid: 5713e29f0fff6314e8486d7b1697ac09
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tur Emission
+    second: {fileID: 2100000, guid: 05af35bc35560f8438b65e0da3ead16d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
